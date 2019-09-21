@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 20 Eyl 2019, 17:52:09
+-- Üretim Zamanı: 21 Eyl 2019, 14:49:24
 -- Sunucu sürümü: 5.7.17-log
 -- PHP Sürümü: 5.6.40
 
@@ -37,16 +37,7 @@ CREATE TABLE IF NOT EXISTS `uyeler` (
   `dogrulamakodu` text NOT NULL,
   `dogrulamadurumu` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Tablo döküm verisi `uyeler`
---
-
-INSERT INTO `uyeler` (`id`, `kadi`, `email`, `sifre`, `dogrulamakodu`, `dogrulamadurumu`) VALUES
-(1, 'asd', 'asd', '10470c3b4b1fed12c3baac014be15fac67c6e815', '', 0),
-(2, 'root', 'batuhanozen06@gmail.com', '1f82ea75c5cc526729e2d581aeb3aeccfef4407e', 'KGS_5d82997a1cb8e', 1),
-(3, 'root2', 'root', '1f82ea75c5cc526729e2d581aeb3aeccfef4407e', 'KGS_5d82e8cabdae0', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
