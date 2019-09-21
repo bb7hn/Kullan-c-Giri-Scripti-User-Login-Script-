@@ -1,8 +1,9 @@
 <?php 
 	session_start();
+	require_once ("inc/db.php");
 	if(isset($_SESSION["giris"]))
 	{
-		echo'Başarılı';
+		require("loggedhead.php");
 		
 	}
 	else

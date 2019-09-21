@@ -1,3 +1,4 @@
+<?php if(!defined("site_adi")) $site_adi="KGS"?>
 <head>
 	<title><?php echo$site_adi; ?></title>
 	<link rel="stylesheet" type="text/css" href="inc/style.css">
@@ -8,4 +9,5 @@
 	<link rel="stylesheet" type="text/css" href="inc/overhang.min.css" />
 	<script type="text/javascript" src="inc/overhang.min.js"></script>
 	<script type="text/javascript" src="inc/functions.js"></script>
+    <script type="text/javascript" src="inc/mailcheck.js"></script>
 </head>

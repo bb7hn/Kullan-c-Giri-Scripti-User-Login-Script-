@@ -38,12 +38,79 @@
                         $_SESSION["giris"]	=	1;
                         $_SESSION["kadi"]	=	$kadi;
                         $_SESSION["sifre"]	=	$sifre;
-                        //mail fonksiyonu ile  doğrulama kodunu gönderecek kodu ekle
-                        echo'0';// ve işlmelerin hatasız gerçekleştiğine dair 0 hata kodumuzu gönderiyoruz.
-                    }
+
+                        $gonderenisim = "KGS";
+                        $siteadresi ="siteadresi.com";
+                        $mesaj = "$siteadresi Üyeliğinizi onaylamak için doğrulama kodunuz :$dogrulamakodu";
+                        $gonderenmail = "iletisim@batuhanozen.com";
+                        $epostakonu = "$siteadresi ÜYELİK ONAYI";
+
+
+                         require "class.phpmailer.php";
+                         $mail = new PHPMailer();
+                         $mail->IsSMTP();
+                         $mail->From     = $gonderenmail;
+                         $mail->Sender   = $gonderenmail;
+                         $mail->FromName = "$siteadresi üyeliğiniz";  //göndericinin adı
+                         $mail->Host     = "mail.site.com"; //smtp nin kullanacağı mail sunucusu
+                         $mail->SMTPAuth = true;
+                         $mail->Username = "mail@site.com";  //mail hesabı kullanıcı adı
+                         $mail->Password = "sifre";  //mail hesabına ait şifre
+                         $mail->Port = "587"; //smtp nin kullanacağı giden mail sunucu portu
+                         $mail->CharSet = "utf-8";
+                         $mail->WordWrap = 50;
+                         $mail->IsHTML(true);
+                         $mail->Subject  = $epostakonu;
+
+                         $body = $mesaj;
+
+                         $textBody = strip_tags($mesaj);
+                         $mail->Body = $body;
+                         $mail->AltBody = $textBody;
+                         $mail->AddAddress($email);  //mailin gönderileceği mail adresi
+                         //$mail->AddAddress("mail@mail.com");  //maillerin gideceği ek adresler (varsa)
+                         return ($mail->Send())?true:false;
+                         $mail->ClearAddresses();
+                         $mail->ClearAttachments();
+                        if($mail->Send()) {
+                            // e-posta başarı ile gönderildi
+                            echo'0';// ve işlmelerin hatasız gerçekleştiğine dair 0 hata kodumuzu gönderiyoruz
+                        } else {
+                            // bir sorun var, sorunu log dosyasına kaydedelim
+                            if(file_exists("./inc/log.txt"))
+                            {
+                                $dosya = fopen('./inc/log.txt', 'a');
+                                fwrite($dosya, '\n'+$mail->ErrorInfo);
+                                fclose($dosya);
+                            }
+                            else
+                            {
+                                touch('./inc/log.txt');
+                                $dosya = fopen('./inc/log.txt', 'a');
+                                fwrite($dosya, '\n'+$mail->ErrorInfo);
+                                fclose($dosya);
+                            }
+                        }
+                        }
+
                     else//değilse
                     {
+                        echo'veritabanı hatası';
                         //log kaydı alıyoruz
+                        if(file_exists("./inc/log.txt"))
+                        {
+                            $dosya = fopen('./inc/log.txt', 'a');
+                            fwrite($dosya, '\n'+mysqli_error($conn));
+                            fclose($dosya);
+                        }
+                        else
+                        {
+                            touch('./inc/log.txt');
+                            $dosya = fopen('./inc/log.txt', 'a');
+                            fwrite($dosya, '\n'+mysqli_error($conn));
+                            fclose($dosya);
+                        }
+
                     }
                 }
             }
