@@ -3,7 +3,7 @@
 	require_once ("inc/db.php");
 	if(isset($_SESSION["giris"]))
 	{
-		require("loggedhead.php");
+		require("inc/loggedhead.php");
 		
 	}
 	else

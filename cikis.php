@@ -3,12 +3,12 @@
 	require_once("inc/head.php")
 	?>
 	<body>
-	<?
+	<?php
 	session_start();
 	session_destroy();
 	echo str_repeat("<br>", 8)."<center><h1 style=\"color:lime;\">Çıkış Başarılı</h1></center>";
-	header("Refresh: 2; url= index.php");
+    echo'<meta http-equiv="refresh" content="1;URL=index.php">';
 	return;
-	mysql_close();
+	mysqli_close();
 ?>
 </body>

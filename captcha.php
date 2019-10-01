@@ -21,3 +21,5 @@ imagefill($resim, 0, 0, $arka_renk);
 imagestring($resim, 100, 0, 0, $kod, $yazi_renk);
 
 imagepng($resim);
+
+?>
