@@ -1,0 +1,22 @@
+#main
+{
+	margin-top:10%;
+	text-align:center;
+}
+.pointer
+{
+	cursor:pointer;
+	padding:5px;
+}
+.green
+{
+	color:green;
+}
+.blue
+{
+	color:blue;
+}
+.red
+{
+	color:red;
+}
